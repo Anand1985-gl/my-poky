@@ -2241,6 +2241,8 @@ class RunQueueExecute:
                         self.tasks_scenequeue_done.remove(dep)
                     if dep in self.tasks_notcovered:
                         self.tasks_notcovered.remove(dep)
+                    if dep in self.tasks_covered:
+                        self.tasks_covered.remove(dep)
 
             if tid in self.sq_buildable:
                 self.sq_buildable.remove(tid)
@@ -2254,6 +2256,8 @@ class RunQueueExecute:
                 self.sqdata.outrightfail.remove(tid)
             if tid in self.scenequeue_notcovered:
                 self.scenequeue_notcovered.remove(tid)
+            if tid in self.scenequeue_covered:
+                self.scenequeue_covered.remove(tid)
 
             (mc, fn, taskname, taskfn) = split_tid_mcfn(tid)
             self.sqdata.stamps[tid] = bb.build.stampfile(taskname + "_setscene", self.rqdata.dataCaches[mc], taskfn, noextra=True)
